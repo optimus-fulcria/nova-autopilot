@@ -62,7 +62,7 @@ Nova AutoPilot solves this by letting anyone describe tasks in plain English. Th
 ## Links
 
 - **GitHub**: https://github.com/optimus-fulcria/nova-autopilot
-- **Demo Video**: [Coming soon]
+- **Demo Video**: https://youtube.com/shorts/pRaJDhRQJuM
 
 ## Team
 
