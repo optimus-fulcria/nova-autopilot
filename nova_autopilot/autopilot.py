@@ -9,7 +9,7 @@ import time
 import json
 import logging
 from typing import Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from contextlib import contextmanager
 
 from dotenv import load_dotenv
@@ -197,7 +197,7 @@ Be specific about selectors and actions. Keep steps atomic."""
             TaskResult with execution details
         """
         start_time = time.time()
-        result = TaskResult(success=False, started_at=datetime.utcnow())
+        result = TaskResult(success=False, started_at=datetime.now(timezone.utc))
 
         try:
             # Plan the task
@@ -238,7 +238,7 @@ Be specific about selectors and actions. Keep steps atomic."""
             logger.error(f"Task execution failed: {e}")
 
         result.execution_time = time.time() - start_time
-        result.completed_at = datetime.utcnow()
+        result.completed_at = datetime.now(timezone.utc)
 
         return result
 

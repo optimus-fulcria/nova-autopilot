@@ -4,7 +4,7 @@ Data models for Nova AutoPilot
 
 from dataclasses import dataclass, field
 from typing import Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 @dataclass
@@ -21,7 +21,7 @@ class TaskResult:
 
     def __post_init__(self):
         if self.started_at is None:
-            self.started_at = datetime.utcnow()
+            self.started_at = lambda: datetime.now(timezone.utc)()
 
 
 @dataclass
@@ -55,7 +55,7 @@ class ActionStep:
     action: str
     target: Optional[str] = None
     value: Optional[str] = None
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     success: bool = True
     screenshot: Optional[bytes] = None
 

@@ -7,7 +7,7 @@ new features, and content updates.
 """
 
 from nova_autopilot import AutoPilot
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import hashlib
 
@@ -70,7 +70,7 @@ class CompetitorMonitor:
         check_result = {
             "name": name,
             "url": url,
-            "checked_at": datetime.utcnow().isoformat(),
+            "checked_at": datetime.now(timezone.utc).isoformat(),
             "success": result.success
         }
 

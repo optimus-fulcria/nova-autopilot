@@ -7,7 +7,7 @@ and creates a unified feed.
 """
 
 from nova_autopilot import AutoPilot
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 
 
@@ -45,7 +45,7 @@ def aggregate_news(sources: list[dict] = None) -> dict:
 
     pilot = AutoPilot(headless=True, timeout=30)
     feed = {
-        "generated_at": datetime.utcnow().isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": []
     }
 
@@ -61,7 +61,7 @@ def aggregate_news(sources: list[dict] = None) -> dict:
         source_data = {
             "name": source["name"],
             "url": source["url"],
-            "fetched_at": datetime.utcnow().isoformat()
+            "fetched_at": datetime.now(timezone.utc).isoformat()
         }
 
         if result.success:
